@@ -12,18 +12,18 @@ function App() {
         e.prevenDefault();
         try {
             await writeContract({
-                address: 'YOUR_CONTRACT_ADDRESS',
-                abi: [
-                    {
-                        name: 'mintMemory',
-                        type: 'function',
-                        inputs: [{name: '_memory', type: 'string'}],
-                        outputs: [],
-                        stateMutability: 'nonpayable',
-                    },
-                ],
-                functionName: 'mintMemory',
-                args: [memory],
+              address: "0xA3C83D214eb74A41f144048294e9790131908198",
+              abi: [
+                {
+                  name: "mintMemory",
+                  type: "function",
+                  inputs: [{ name: "_memory", type: "string" }],
+                  outputs: [],
+                  stateMutability: "nonpayable",
+                },
+              ],
+              functionName: "mintMemory",
+              args: [memory],
             });
         } catch (error) {
             console.error('Error minting memory:', error);

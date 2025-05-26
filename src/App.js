@@ -6,10 +6,37 @@ import { wagmiConfig } from "./wagmiConfig";
 function App() {
     const [memory, setMemory] = useState('');
     const { address, isConnected } = useAccount({ config: wagmiConfig });
+    const { WriteContract, data: txHash } = useWriteContract();
 
     const handleSubmit = async (e) => {
         e.prevenDefault();
+        try {
+            await writeContract({
+                address: 'YOUR_CONTRACT_ADDRESS',
+                abi: [
+                    {
+                        name: 'mintMemory',
+                        type: 'function',
+                        inputs: [{name: '_memory', type: 'string'}],
+                        outputs: [],
+                        stateMutability: 'nonpayable',
+                    },
+                ],
+                functionName: 'mintMemory',
+                args: [memory],
+            });
+        } catch (error) {
+            console.error('Error minting memory:', error);
+        }
     };
+
+    if (txHash) {
+        return (
+            <div>
+                <p>Transaction Hash: {txHash}</p>
+            </div>
+        );
+    }
 
     return (
         <div>

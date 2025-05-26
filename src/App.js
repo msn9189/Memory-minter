@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useAccount, useWriteContract } from 'wagmi';
-import miniApp from './farcaster';
+//import miniApp from './farcaster';
 import { wagmiConfig } from "./wagmiConfig";
 
 function App() {
     const [memory, setMemory] = useState('');
-    const { address, isConnected } = useAccount({ config: wagmiConfig });
-    const { WriteContract, data: txHash } = useWriteContract();
+    const { isConnected } = useAccount({ config: wagmiConfig });
+    const { data: txHash } = useWriteContract();
 
     const handleSubmit = async (e) => {
         e.prevenDefault();
